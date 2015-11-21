@@ -1,0 +1,156 @@
+<html>
+<head>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	
+	<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+<!-- <script 
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+	
+ <meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" /> 
+
+<title>Customer Signup</title>
+</head>
+<body ng-app="customer" ng-controller="signup">
+
+
+<div clas="col-md-12">
+SignUP
+</div>
+<form>
+
+<div>
+
+  <label for="email">Email</label>
+  <input type="email" value="" name="email" id="email" ng-model="email" placeholder="name@example.com">
+
+  <label for="password">Password</label>
+  <input type="password" value="" name="password" id="password" ng-model="pwd"  placeholder="At least 5 characters"><br>
+
+
+
+  <label for="name">Name</label><br>
+  	 <input type="text" value="" name="first_name" id="first_name" ng-model="first_name" placeholder="First Name">
+	 <input type="text" value="" name="last_name" id="last_name" ng-model="last_name" placeholder="Last Name"><br>
+
+  <label for="mobile">Mobile Number</label>
+   <input type="tel" value="" name="mobile" id="mobile" ng-model="mobile" placeholder="Phone"><br>
+
+ 
+  			<label for="card_number">Credit Card Number</label>
+  			<input type="tel" value="" name="card_number" id="card_number" ng-model="card_number"  placeholder="1234 5678 9012 3456"><br>
+   			<div class="credit-card-icon defer_css_image_loading"></div>
+  			<div class="error-notice"></div>
+  		
+			<label for="card_code">CVV</label>
+  			<input type="tel" value="" name="card_code" id="card_code" ng-model="card_code" placeholder="123"><br>
+  			<div class="error-notice"></div>
+  
+  		<label for="card_expiration">Expiration Date</label>
+           <select name="card_expiration_month" id="card_expiration_month-month" ng-model="card_expiration_month" class="">
+  			  <option value="" label="month" disabled selected>month</option>
+		      <option value="1" label="1">
+		        1
+		      </option>
+		      <option value="2" label="2">
+		        2
+		      </option>
+		    
+		      <option value="3" label="3">
+		        3
+		      </option>	       
+  			</select>
+          
+ 		 <select name="card_expiration_year" id="card_expiration_year-year" ng-model="card_expiration_year" class="">
+    		<option value="" label="year" disabled selected>year</option>
+    
+      		<option value="2015" label="2015">
+        		2015
+      		</option>
+    
+      <option value="2016" label="2016">
+        2016
+      </option>
+    
+      <option value="2017" label="2017">
+        2017
+      </option>
+    
+      <option value="2018" label="2018">
+        2018
+      </option>
+  
+  	</select>
+
+  <label for="billing_zip">Postal Code</label>
+  <input type="text" value="" name="billing_zip" id="billing_zip" ng-model="billing_zip" placeholder="94103"><br>
+ 
+ 
+  <label for="promotion_code">Promotion Code</label>
+
+  <input type="text" value="" name="promotion_code" id="promotion_code" ng-model="promotion_code" placeholder="Promotion Code"><br>
+
+  <input type="submit" value="Create Account" ng-click="create_account()"/>
+
+</div>
+</form>
+ 
+<script>
+  //script for angular
+  
+  var ang=angular.module(customer,[]);
+  
+  ang.controller(signup,function($scope, $http){
+  	$scope.create_account=function(){
+  		$http({
+  			method: 'POST',
+	            url: '/cust_signup',
+	            data:
+	            { 
+	            	"email"=$scope.email,
+	            	"pwd"=$scope.pwd,
+	            	"first_name"=$scope.first_name,
+	            	"last_name"=$scope.last_name,
+	            	"mobile"=$scope.mobile,
+	            	"card_number"=$scope.card_number,
+	            	"card_code"=$scope.card_code,
+	            	"card_expiration_month"=$scope.card_expiration_month,
+	            	"card_expiration_year"=$scope.card_expiration_year,
+	            	"billing_zip"=$scope.billing_zip,
+	            	"promotion_code"=$scope.promotion_code
+	            }
+  		}).success(function(response){
+  		
+  			//window.location='/homepage';
+  		
+  		}).error(function(response){
+  		
+  		})
+  		
+  	};
+  });
+  
+</script>
+</body>
+</html>
